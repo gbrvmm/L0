@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orders Demo</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Orders Demo</h1>
+    <p>Поиск заказа по <code>order_uid</code></p>
+  </header>
+
+  <main>
+    <section class="search">
+      <input id="orderId" type="text" placeholder="Введите order_uid…" autofocus />
+      <button id="findBtn">Поиск</button>
+      <button id="sampleBtn">Вставить пример</button>
+      <span id="status" aria-live="polite"></span>
+    </section>
+
+    <section id="result" class="card hidden">
+      <h2 id="res-id"></h2>
+      <div class="grid">
+        <div>
+          <h3>Доставка</h3>
+          <div id="res-delivery"></div>
+        </div>
+        <div>
+          <h3>Оплата</h3>
+          <div id="res-payment"></div>
+        </div>
+      </div>
+
+      <h3>Товары</h3>
+      <table id="items">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Бренд</th>
+            <th>Цена</th>
+            <th>Скидка</th>
+            <th>Итого</th>
+            <th>RID</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/healthz" target="_blank">/healthz</a>
+  </footer>
+  
+  <script src="/script.js"></script>
+</body>
+</html>

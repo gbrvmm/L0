@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: orders-postgres
+    environment:
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: orders
+      POSTGRES_DB: orders
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orders"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  nats-streaming:
+    image: nats-streaming:latest
+    container_name: orders-nats-streaming
+    command: ["-p", "4222", "-m", "8222", "-store", "file", "-dir", "/data", "-cid", "test-cluster"]
+    ports:
+      - "4222:4222"  # client connections
+      - "8222:8222"  # monitoring
+    volumes:
+      - natsdata:/data
+
+volumes:
+  pgdata:
+  natsdata:
